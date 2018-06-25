@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  django_dev:
+    image: template_django_dev
+    build:
+      context: .
+      dockerfile: docker/dev.Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./project:/src
+      - dev_media:/src/media
+    env_file: ./env/django/dev.env
+    restart: unless-stopped
+    links:
+      - db_dev
+
+  db_dev:
+    image: mdillon/postgis:9.6
+    volumes:
+      - dev_data:/var/lib/postgresql/data
+    env_file: ./env/postgres/dev.env
+    restart: unless-stopped
+
+volumes:
+  dev_data:
+  dev_media:

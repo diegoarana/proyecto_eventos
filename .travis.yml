@@ -1,0 +1,15 @@
+language: python
+
+python:
+  - '3.6'
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE=config.settings.test
+
+install:
+  - pip install -r ./requirements/test.txt
+
+script:
+  - cd project && coverage run --source='.' manage.py test app.test
+  - coverage report --fail-under=80

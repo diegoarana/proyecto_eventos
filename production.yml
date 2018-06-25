@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  django_prod:
+    image: template_django_prod
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - prod_media:/src/media
+    env_file: ./env/django/dev.env
+    restart: unless-stopped
+    links:
+      - db_prod
+
+  db_prod:
+    image: mdillon/postgis:9.6
+    volumes:
+      - prod_data:/var/lib/postgresql/data
+    env_file: ./env/postgres/dev.env
+    restart: unless-stopped
+
+
+volumes:
+  prod_data:
+  prod_media:
