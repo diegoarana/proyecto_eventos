@@ -1,0 +1,15 @@
+## DB
+*.sqlite3
+
+## VS Code
+.vscode
+
+## PyCharm
+.idea
+
+## Python
+__pycache__
+.coverage
+
+## Production credentials
+env/*/production.env
