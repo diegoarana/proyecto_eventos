@@ -1,10 +1,10 @@
+# -*- coding: UTF-8-*-
+from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
 
 class Organizador(models.Model):
-    nombre = models.CharField(max_length=100, blank=false, null=false)
-    apellido = models.CharField(max_length=100, blank=false, null=false)
-    mail = models.CharField(max_length=100, blank=false, null=false)
-    telefono = models.PositiveIntegerField(help_text="(Solamente dígitos)", validators=[MaxValueValidator(999999999999999)], blank=False, null=False,)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="usuario")
 
-	def __str__(self):
-		return "{} {}". format(self.nombre, self.apellido or "")
+    def __str__(self):
+        return self.user.username

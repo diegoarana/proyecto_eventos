@@ -1,13 +1,5 @@
-from rest_framework import viewsets
-from .models import Question, Choice
-from .serializers import QuestionSerializer, ChoiceSerializer
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
-
-class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-
-
-class ChoiceViewSet(viewsets.ModelViewSet):
-    queryset = Choice.objects.all()
-    serializer_class = ChoiceSerializer
+def index(request):
+    return render(request, 'index.html')
