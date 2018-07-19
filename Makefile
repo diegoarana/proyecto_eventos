@@ -10,7 +10,7 @@ down-dev:
 
 #### Down dev and remove volumes
 .PHONY: down-dev-v
-down-dev:
+down-dev-v:
 	docker-compose -f dev.yml down -v
 
 #### Test
